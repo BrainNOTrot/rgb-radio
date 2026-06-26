@@ -1,0 +1,20 @@
+[
+  {
+    "hex": "#000000",
+    "title": "#000000 — Black",
+    "videoNumber": 1,
+    "path": "00/000000.json"
+  },
+  {
+    "hex": "#000001",
+    "title": "#000001 — RGB(0,0,1)",
+    "videoNumber": 2,
+    "path": "00/000001.json"
+  },
+  {
+    "hex": "#000002",
+    "title": "#000002 — RGB(0,0,2)",
+    "videoNumber": 3,
+    "path": "00/000002.json"
+  }
+]
