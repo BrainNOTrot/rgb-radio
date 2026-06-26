@@ -1,5 +1,9 @@
 {
-  "uploaded": 2,
-  "remaining": 16777214,
-  "latest": "#000001"
+  "project": "RGB RADIO",
+  "started": "2026-06-26",
+  "uploaded": 3,
+  "remaining": 16777213,
+  "totalColors": 16777216,
+  "latest": "#000002",
+  "latestVideo": 3
 }

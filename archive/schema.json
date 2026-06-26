@@ -1,0 +1,13 @@
+{
+  "hex": "string",
+  "rgb": [0, 0, 0],
+  "name": "string | null",
+  "title": "string",
+  "videoNumber": 1,
+  "youtubeUrl": "string",
+  "song": "string",
+  "artist": "string",
+  "duration": "string",
+  "license": "string",
+  "uploaded": "YYYY-MM-DD"
+}
