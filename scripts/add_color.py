@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,7 @@ stats = load_stats()
 hex_code = input("HEX (without #): ").strip().upper()
 
 if len(hex_code) != 6:
-    print("HEX must contain exactly 6 characters.")
+    print("HEX must be exactly 6 characters.")
     exit()
 
 folder = hex_code[:2]
@@ -34,25 +35,17 @@ os.makedirs(folder_path, exist_ok=True)
 filename = os.path.join(folder_path, f"{hex_code}.json")
 
 if os.path.exists(filename):
-    print("This color already exists.")
+    print("Color already exists.")
     exit()
 
-name = input("Name: ").strip()
+name = input("Color name: ").strip()
 song = input("Song: ").strip()
-
-artist = input("Artist [RGB RADIO]: ").strip()
-if artist == "":
-    artist = "RGB RADIO"
-
 duration = input("Duration (e.g. 4:11): ").strip()
-
 license_name = input("License: ").strip()
-
 youtube = input("YouTube URL: ").strip()
 
-upload_date = input(f"Upload date [{date.today()}]: ").strip()
-if upload_date == "":
-    upload_date = str(date.today())
+artist = "RGB RADIO"
+upload_date = str(date.today())
 
 r = int(hex_code[0:2], 16)
 g = int(hex_code[2:4], 16)
@@ -84,6 +77,17 @@ stats["latestVideo"] = video_number
 
 save_stats(stats)
 
-print()
-print("✓ Done")
-print(filename)
+print("\n✓ Archive updated")
+
+choice = input("\nPush to GitHub now? [Y/n]: ").strip().lower()
+
+if choice in ("", "y", "yes"):
+    subprocess.run(["git", "add", "."], cwd=ROOT)
+    subprocess.run(
+        ["git", "commit", "-m", f"Added #{hex_code}"],
+        cwd=ROOT
+    )
+    subprocess.run(["git", "push"], cwd=ROOT)
+    print("\n✓ GitHub updated")
+else:
+    print("\nSkipped GitHub push.")

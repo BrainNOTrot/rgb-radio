@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #000;
+    color: #fff;
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Focus visible outlines */
+  :focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black font-mono text-sm font-semibold tracking-tight transition-all duration-150 hover:bg-white/90 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 border border-white/20 text-white font-mono text-sm font-medium tracking-tight transition-all duration-150 hover:bg-white/5 active:scale-95;
+  }
+
+  .card-color {
+    @apply relative overflow-hidden transition-all duration-200 hover:scale-[1.02] hover:shadow-2xl;
+  }
+
+  .stat-label {
+    @apply text-[10px] font-mono uppercase tracking-[0.2em] text-white/40;
+  }
+
+  .stat-value {
+    @apply text-2xl font-mono font-bold tabular-nums;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Scanline texture for the hero */
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  }
+}
+
+/* Progress bar fill animation */
+@keyframes progress-fill {
+  from { width: 0% }
+}
+
+.progress-fill {
+  animation: progress-fill 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
